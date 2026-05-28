@@ -31,6 +31,8 @@ If not available, ask the user to provide their current metadata.
 
 Score each factor on a 0-10 scale. Calculate an overall ASO Score (weighted average).
 
+The ten factors and weights below follow the standard ASO industry rubric (broadly consistent across Phiture's ASO Stack, AppTweak, App Radar, and several open-source ASO skills). What's distinctive about this audit is **not** the rubric itself but the cross-cutting **Promise-Delivery Thread Check** that sits on top of it (see the section below "10. Conversion Signals") — that's what catches the leak between a high-ranking keyword and an actually-retained user, and it's what siblings like [`funnel-consistency`](https://github.com/hyojinmo/funnel-consistency) extend end-to-end.
+
 ### 1. Title (Weight: 20%)
 
 | Check | What to look for |
@@ -135,36 +137,39 @@ Score each factor on a 0-10 scale. Calculate an overall ASO Score (weighted aver
 | In-App Events | Using in-app events for visibility? |
 | Custom Product Pages | Multiple product pages for different audiences? |
 
-## Promise-Delivery Thread Check (cross-cutting)
+## Promise-Delivery Thread Check (storefront-bounded, Hops A-D)
 
-ASO factors above are scored in isolation. This section audits **consistency of the promise across the funnel** — the single biggest leak between a high-ranking keyword and actual retained users.
+The ten factors above are scored in isolation. This section audits **promise consistency along the storefront path** — the single biggest leak between a high-ranking keyword and the user actually tapping Install with the right expectation.
 
-For each of the top 3-5 primary keywords, trace the thread:
+This audit is **storefront-bounded**. It covers Hops A through D in the funnel-consistency taxonomy:
 
 ```
-Keyword → Title/Subtitle → Screenshot 1-3 → Description hook
-       → First-launch screen → Onboarding → Aha moment → Core feature
+[A] Pain moment        → Search query
+[B] Search query       → Search result row (title + subtitle + icon)
+[C] Search result row  → Product page (screenshots, description, preview)
+[D] Product page       → Install decision
 ```
 
-At each hop, check: **does the next step honor the promise of the previous step, in the user's own words?**
+Hops E-I (install → first launch → onboarding → aha → core feature → conversion) are out of scope here — that's where reviews and retention break, and it's exactly what [`funnel-consistency`](https://github.com/hyojinmo/funnel-consistency) audits. Don't try to assess them from storefront data alone; hand off explicitly.
+
+For each of the top 3-5 primary keywords, trace the storefront thread:
 
 | Hop | Question |
 |-----|----------|
-| Keyword → Title | Does the title use the same word the user searched, not a synonym? |
-| Title → Screenshot 1 | Does screenshot 1 visually show *that exact thing* in the first 1s of glance? |
-| Screenshots → First launch | When the user opens the app, do they see what screenshot 1 promised, or a sign-up wall / different UI? |
-| First launch → Aha moment | How many taps until the value promised in the keyword is delivered? (Target: ≤3) |
-| Aha moment → Core feature | Is the core feature *actually* the thing the keyword sold? |
+| A: Pain → Query | Are we targeting language users actually type (pain-language), not category-language? |
+| B: Query → Result row | Does the title contain the **exact word** searched, not a synonym? Does the icon telegraph the promise at 60×60px? |
+| C: Result row → Product page | Does screenshot 1 visually show *exactly* what the keyword promised — within 1s of glance? Caption uses the user's word? |
+| D: Product page → Install | Description first 3 lines restate the promise in the user's words? Preview video first 3s shows the promised feature, not a logo intro? |
 
 **Red flags to surface explicitly:**
-- Keyword promises X, screenshot 1 shows Y → review-driven churn ("not what I expected")
-- Screenshot shows feature behind a paywall but not labeled as such → 1★ reviews
-- Onboarding asks for unrelated info (email, notifications, account) before delivering the searched value
-- Core feature is buried 2+ levels deep behind the screenshot's promise
+- Keyword promises X, screenshot 1 shows Y → install-decision drift (catches in reviews as "not what I expected")
+- Title uses brand name first when keyword search wastes the match
+- Description opens with "Founded in 2019..." instead of restating value
+- Screenshot caption uses solution-language when keyword is pain-language (or vice versa)
 
-**Output**: a Thread Score (0-10) per primary keyword, with the weakest hop called out. A keyword that ranks #3 but has a broken thread is worth less than a keyword at #8 with a clean thread — flag this trade-off explicitly.
+**Output**: a Storefront Thread Score (0-10) per primary keyword, with the weakest of Hops A-D called out. A keyword that ranks #3 but has a broken storefront thread is worth less than a keyword at #8 with a clean thread — flag this trade-off explicitly.
 
-For a deeper audit that extends beyond the App Store into the running app, hand off to the `funnel-consistency` skill.
+**For the in-app half**: hand off to [`funnel-consistency`](https://github.com/hyojinmo/funnel-consistency) for Hops E-I. The two audits compose: `aso-audit` Storefront Thread + `funnel-consistency` In-App Thread = full 9-hop funnel.
 
 ## Output Format
 

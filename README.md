@@ -2,6 +2,18 @@
 
 A Claude Code skill for a comprehensive ASO health audit of an App Store listing. Scores ten factors, produces an overall ASO score, and outputs a prioritized action plan (quick wins / this week / strategic).
 
+## Why use this one
+
+Several open-source ASO audit skills exist with similar 10-factor scoring (Eronred/aso-skills, alirezarezvani/claude-code-aso-skill, others). The ten-factor rubric below follows the standard ASO industry framing — broadly shared across Phiture's ASO Stack, AppTweak, App Radar, and most open-source audits. **That's not where this skill differentiates.**
+
+What's distinctive here:
+
+1. **Promise-Delivery Thread Check (Hops A-D)** — a cross-cutting audit on top of the 10-factor scoring that traces each primary keyword through the storefront. Catches the single biggest leak between a high-ranking keyword and the user tapping Install with the right expectation. Most ASO audits score the title and the screenshot separately; this one asks "does the title's promise match what screenshot 1 shows, in the user's own word?"
+2. **Clean hand-off to in-app** — the storefront-side thread (Hops A-D) lives here; the in-app continuation (Hops E-I: install → first launch → onboarding → aha → core feature) is delegated explicitly to [`funnel-consistency`](https://github.com/hyojinmo/funnel-consistency). Compose both audits for the full 9-hop funnel.
+3. **Pairs with the Korean-first [`keyword-research`](https://github.com/hyojinmo/keyword-research)** that models user-search-intent (pain vs solution language, locale-specific patterns) before audit. Most ASO audits assume the keyword set is correct — this stack questions that upstream.
+
+If you only need a basic 10-factor score with no thread-checking and no Korean/locale work, the simpler audits are fine. Use this one when promise-delivery consistency is the actual problem you're solving.
+
 ## What it does
 
 Scores each factor 0-10, weighted into an overall score:
