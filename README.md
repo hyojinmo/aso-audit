@@ -92,4 +92,4 @@ SKILL.md   # Full audit framework, scoring rubrics, output format
 
 ## Status
 
-Private, used by [@hyojinmo](https://github.com/hyojinmo). Preparing for open source.
+Used by [@hyojinmo](https://github.com/hyojinmo) for shipping indie iOS apps. Released as open source — issues and PRs welcome (see [CONTRIBUTING](CONTRIBUTING.md)).
