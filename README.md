@@ -86,7 +86,7 @@ SKILL.md   # Full audit framework, scoring rubrics, output format
 ## How it pairs
 
 - [`keyword-research`](https://github.com/hyojinmo/keyword-research) — deep dive into opportunities surfaced during audit
-- [`metadata-optimization`](https://github.com/hyojinmo/metadata-optimization) — implements metadata changes identified
+- `metadata-optimization` (not yet public) — implements metadata changes identified
 - [`funnel-consistency`](https://github.com/hyojinmo/funnel-consistency) — end-to-end version of the Promise-Delivery Thread Check
 - [`product-operations`](https://github.com/hyojinmo/product-operations) — quarterly review uses this skill
 

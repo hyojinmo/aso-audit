@@ -209,7 +209,7 @@ Brief comparison table showing how the app stacks up against top 3 competitors o
 ## Related Skills
 
 - `keyword-research` — Deep dive into keyword opportunities found during audit
-- `metadata-optimization` — Implement the metadata improvements identified
+- `metadata-optimization` (not yet public) — Implement the metadata improvements identified
 - `screenshot-optimization` — Redesign screenshots based on audit findings
 - `competitor-analysis` — Detailed competitive analysis
 - `review-management` — Address review issues found in audit
